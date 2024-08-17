@@ -1,3 +1,5 @@
+// Adicionar stdio e stdlib quando incluir esta biblioteca
+
 const int MAX = 1e4;
 
 int len(char *s){
