@@ -313,3 +313,13 @@ char* fatorial(char* num){
 
 	return ans;
 }
+
+void BigPrint(char* s){
+	int l = len(s);
+	for (int i=0; i<l; i++){
+		if (i > 0 && (l-i) % 3 == 0) printf(".");
+		printf("%c", s[i]);
+	}
+
+	return;
+}
