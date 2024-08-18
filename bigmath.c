@@ -141,7 +141,7 @@ int cmp(char* a, char* b){ // -1 (a < b); 0 (a == b); 1 (a > b)
 	return 0;
 }
 
-char* stoi(int num){
+char* str(int num){
 	char* str = (char*) malloc(MAX * sizeof(char));
 
 	if (num == 0) {
@@ -165,11 +165,132 @@ char* stoi(int num){
 	return str;
 }
 
-char* fatorial(char* num){
-	char* ans = stoi(1); // Comeca ans = 1
-	char* i = stoi(2); // Comeca i = 2
+void BigDiv2(char* s){
+	int l = len(s);
+	int i=0;
+	for (i=0; i<l; i++) {
+		if (i+1 < l) s[i+1] += 10*((s[i]-'0')%2);
+		s[i] = (s[i]-'0')/2 + '0';
+	}
 
-	char* um = stoi(1);
+	if (s[0] == '0'){
+		for (i=1; i<=l; i++) s[i-1] = s[i];
+	}
+
+	return;
+}
+
+void BigInc(char* s){
+	int l = len(s);
+	int i = l-1;
+	s[i] = s[i] + 1;
+	while (s[i]-'0' > 9) {
+		if (i == 0){
+			for (int j=++l; j>=0; j--) s[j] = s[j-1];
+			s[0] = '0';
+			i++;
+		}
+
+		s[i] = (s[i]-'0')%10 + '0';
+		s[--i]++;
+	}
+
+	return;
+}
+
+void BigDec(char* s){
+	int l = len(s);
+	int i = l-1;
+	s[i] = s[i] - 1;
+	while (s[i]-'0' < 0) {
+		s[i] += 10;
+		s[--i]--;
+	}
+	if (s[0]-'0' == 0){
+		for (int i=0; i<l; i++){
+			s[i] = s[i+1];
+		}
+	}
+
+	return;
+}
+
+char* BigDiv(char* s, char* t){
+	int l1 = len(s), l2 = len(t);
+	int l;
+
+	if (l1 <= l2) l = 1;
+	else l = l1;
+
+	char* ans = (char*) calloc(l+1, sizeof(char));
+
+	char* aux = str(0);
+	if (cmp(t,aux) == 0){ // Divisao por zero
+		ans[0] = '@';
+		ans[1] = '\0';
+
+		free(aux);
+	} else if (cmp(s,t) == -1) { // s < t
+		ans[0] = '0';
+		ans[1] = '\0';
+	} else { // s >= t
+		// BUSCA BINARIA
+		char* l = str(1);
+		char* r = str(1);
+		cpy(s, r); // r = s
+
+		char *mid;
+		char* mult;
+		while (cmp(l,r) <= 0){ // l <= r
+			mid = BigSum(l,r);
+			BigDiv2(mid); // mid = (l+r)/2
+
+			mult = BigMult(t, mid); // mult = t*mid
+			if (cmp(mult, s) == 1){ // if (mult > s)
+				cpy(mid, ans); // ans = mid
+
+				cpy(mid, r);
+				BigDec(r); // r = mid-1
+			} else {
+				cpy(mid, l);
+				BigInc(l); // l = mid+1
+			}
+
+			free(mid);
+			free(mult);
+		}
+
+		BigDec(ans); // ans = upper_bound - 1
+
+		// METODO ITERATIVO
+		/*char *im1 = str(1);
+		char *i = str(1);
+		char *um = str(1);
+		while (cmp(ans, s) == -1){ // ans < s
+			cpy(i, im1); // i-1 = i
+			aux = BigSum(i,um); // aux = i+1
+			cpy(aux, i); // i = i+1
+			free(aux);
+
+			aux = BigMult(t, i); // aux = t*i
+			cpy(aux, ans); // ans = aux
+			free(aux);
+		}
+
+		cpy(im1, ans);
+		free(um);
+		free(im1);
+		free(i);*/
+	}
+
+	return ans;
+}
+
+char* fatorial(char* num){
+	char* ans = str(1); // Comeca ans = 1
+	char* i = str(2); // Comeca i = 2
+
+	char* um = str(1);
 	char* numM1 = BigSum(num,um); // num+1
 	char* iM1; // i++
 	char* ansVi; // ans*i
