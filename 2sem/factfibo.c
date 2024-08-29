@@ -24,13 +24,15 @@ int main(){
 	printf("Insira um inteiro para calculo do fatorial: ");
 	scanf("%s", n);
 
-	printf("\n%s! = %s\n", n, fatorial(n));
+	printf("\n%s! = ", n);
+	BigPrint(fatorial(n));
+	printf("\n");
 
-	printf("\n\nInsira um inteiro para o limite superior de Fibonacci: ");
+	/*printf("\n\nInsira um inteiro para o limite superior de Fibonacci: ");
 	scanf("%s", n);
 
 	printf("\n[%s] = {", n);
-	Fibonacci(n, stoi(0), stoi(1));
+	Fibonacci(n, str(0), str(1));*/
 
 	return 0;
 }
