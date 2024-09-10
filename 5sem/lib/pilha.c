@@ -24,7 +24,7 @@ void alloc(stack *s, int *err){
 			*err = ALLOC_ERR;
 			break;
 		} else {
-			for (int j=0; j<TAM; j++) s->itens[i][j] = varempty;
+			//for (int j=0; j<TAM; j++) s->itens[i][j] = varempty;
 			*err = NO_ERR;
 		}
 	}
@@ -73,12 +73,11 @@ void Push(stack *s, type x, int *err){
 void SubPush(stack *s, subtype x, int *err){
 	if (!Full(s)) {
 		s->topo++;
-		for (int i=0; i<TAM; i++)
-			if (s->itens[s->topo][i] == varempty){
-				s->itens[s->topo][i] = x;
-				if (i < TAM-1) s->itens[s->topo][i+1] = '\0';
-				break;
-			}
+		for (int i=0; i<TAM; i++){
+			s->itens[s->topo][i] = x;
+			if (i < TAM-1) s->itens[s->topo][i+1] = '\0';
+			break;
+		}
 		*err = NO_ERR;
 	} else *err = FULL_ERR;
 	return;

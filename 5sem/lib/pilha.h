@@ -1,4 +1,4 @@
-#define TAM 10
+#define TAM 30
 #define type char*
 #define subtype char
 #define varempty '\0'
