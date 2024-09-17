@@ -1,7 +1,7 @@
 #define TAM 30
 typedef int type;
 
-typedef struct {
+typedef struct _queue{
 	int ini, fim, total, itens[TAM];
 } queue;
 

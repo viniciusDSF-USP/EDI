@@ -1,5 +1,10 @@
 f = 
 out = s
+G =
 
 all:
-	gcc $(f) lib/queue.c -o $(out)
+ifeq ($(G),)
+	@gcc $(f) lib/queue.c lib/stack.c -o $(out)
+else
+	@gcc $(f) lib/queueGenerica.c lib/stack.c -o $(out)
+endif
