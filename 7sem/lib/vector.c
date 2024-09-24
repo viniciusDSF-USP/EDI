@@ -31,6 +31,7 @@ void vecPush_back(vector *v, int x, int *err){
 		v->ini = v->fim = u;
 	} else {
 		v->fim = v->fim->prox = u;
+		v->fim->prox = NULL;
 	}
 
 	return;
@@ -101,7 +102,7 @@ void vecClear(vector *v){
 	ptr = v->ini;
 
 	while (ptr != NULL){
-		v->ini = ptr->prox;
+		v->ini = v->ini->prox;
 		free(ptr);
 		ptr = v->ini;
 	}
