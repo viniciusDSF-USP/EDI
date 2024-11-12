@@ -1,0 +1,9 @@
+Um nó de cabeçalho/sentinela é útil, pois adiciona um rótulo, ou referencial
+que auxilia na implementação. Por exemplo, em uma lista, pilha ou fila
+dinâmicas e encadeadas, há a necessidade de testar se o ponteiro é nulo.
+Com o nó de cabeçalho, podemos trocar o teste de ponteiro nulo pelo teste
+de algum valor, por exemplo -1 ou '\0' ou qualquer outra coisa
+convencionada, evitando erros de segmentação no acesso ou manipulação deste
+ponteiro. Como rótulo ele é útil, por exemplo, em listas circulares, assim
+podemos saber quando a lista deu uma volta, apenas testando se a informação
+é o valor convencionado (-1, '\0', etc.).
