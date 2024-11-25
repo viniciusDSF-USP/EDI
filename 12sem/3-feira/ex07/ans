@@ -1,0 +1,5 @@
+Na lista generalizada, se não tivermos nenhuma sublista, teremos apenas uma lista linear ordenada.
+O custo de busca, inserção e remoção ainda é de ordem n. Por outro lado, se tivermos sublistas,
+e estiver ordenada em ordem decrescente, o pai da sublista é o maior elemento da sublista, então
+isso melhora o custo computacional. Para busca, se buscamos 'x' e 'x' é menor que o pai da sublista,
+então podemos pular esta sublista, assim são menos operações. Analogamente para inserção e remoção.

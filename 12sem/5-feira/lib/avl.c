@@ -92,6 +92,65 @@ int inserir(No **p, elem x){
 	return (E || D);
 }
 
+No *max_esq(No *p){
+	if (p == NULL) return NULL;
+	if (p->esq == NULL && p->dir == NULL) return p;
+	return max_esq(p->dir);
+}
+
+int remover(No **p, elem x){
+	if (*p == NULL) return 0;
+	
+	int E = 0, D = 0;
+	
+	if (x < (*p)->info)
+		E = remover(&(*p)->esq, x);
+	else if (x > (*p)->info)
+		D = remover(&(*p)->dir, x);
+	else {
+		if ((*p)->esq == NULL && (*p)->dir == NULL){
+			free(*p);
+			*p = NULL;
+			
+			return 1;
+		} else if ((*p)->esq != NULL && (*p)->dir == NULL){
+			No *aux = (*p)->esq;
+			free(*p);
+			*p = aux;
+			
+			return 1;
+		} else if ((*p)->esq == NULL && (*p)->dir != NULL){
+			No *aux = (*p)->dir;
+			free(*p);
+			*p = aux;
+			
+			return 1;
+		} else {
+			No *aux = max_esq((*p)->esq);
+			(*p)->info = aux->info;
+			aux->info = x;
+			E = remover(&(*p)->esq, x);
+		}
+	}
+	
+	if (E || D){
+		(*p)->altura--;
+		(*p)->FB = altura((*p)->dir) - altura((*p)->esq);
+	}
+	
+	if ((*p)->FB <= -2){
+		if ((*p)->esq->FB > 0)
+			rot_esq(&(*p)->esq);
+		rot_dir(p);
+	} else if ((*p)->FB >= 2){
+		if ((*p)->dir->FB < 0)
+			rot_dir(&(*p)->dir);
+		rot_esq(p);
+	}
+	
+	return (E || D);
+}
+
 void print_rec(No *p, int space){
 	if (p == NULL) return;
 	

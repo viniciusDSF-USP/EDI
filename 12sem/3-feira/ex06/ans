@@ -1,0 +1,25 @@
+typedef enum {Real, Int, Char, Sub} type;
+
+typedef union {
+    float f;
+    int i;
+    char c;
+} atomo;
+
+typedef struct {
+    union {
+        atomo atom;
+        struct bloco_listagen *sub;
+    } info;
+    type tipo;
+} elem;
+
+typedef struct bloco_listagen{
+    union {
+        atomo atom;
+        struct bloco_listagen *sub;
+    } info;
+    type tipo;
+
+    struct bloco_listagen *prox;
+} NoGen;

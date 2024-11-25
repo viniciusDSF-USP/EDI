@@ -13,4 +13,5 @@ typedef struct {
 
 AVL *criar();
 int inserir(No **p, elem x);
+int remover(No **p, elem x);
 void print(char *pre, No *p, char *pos);
