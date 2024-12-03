@@ -1,0 +1,12 @@
+ABB *criar(int tipo);
+int inserir(No **p, int **x);
+int remover(No **p, int **x);
+void print_tree(No *p);
+void print_pre(No *p);
+void print_em(No *p);
+void print_pos(No *p);
+void print_width(No *p);
+void print_depth(No *p);
+int estrut_sim(No *p, No *q);
+int altura(No *p);
+int ehABB(No *p);

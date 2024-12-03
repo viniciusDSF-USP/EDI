@@ -1,0 +1,6 @@
+// 12. Por que Árvores Binárias de Busca (ABBs) são boas para busca? Justifique sua resposta, comparando a busca em uma ABB com a busca em uma árvore não ordenada.
+
+	Porque todos os elementos à esquerda de um nó são menores que ele e todos à direita são maiores, assim basta percorrer um caminho único
+para procurar um elemento. Uma árvore não ordenada, precisaria passar por diversos caminhos, olhando toda a árvore até encontrar o elemento.
+Porém, no pior caso, ambas as ávores tem ordem O(n). Para a não ordenada é o caso de o elemento não estar presente e, para a ABB, a lista
+estar ordenada, assim a ABB vira uma lista ordenada encadeada e perde a eficiência de busca.

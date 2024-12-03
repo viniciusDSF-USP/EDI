@@ -1,0 +1,8 @@
+// O que é uma árvore? Qual suas diferenças para listas lineares?
+
+	Árvores possuem uma propriedade que permite otimizar processos de inserção, remoção, alteração e busca em listas
+encadeadas. Por exemplo, se tivermos uma lista dinâmica e encadeada e esta lista estiver ordenada de forma monótona
+crescente ou decrescente, então teríamos as operações de ordem O(n). Nas listas sequenciais podemos fazer busca binária
+se a lista estiver ordenada, que reduz para ordem de O(log(n)). Podemos obter algo em torno de O(log(n)) em árvores
+binárias de busca balanceadas (como a AVL e Árvore Rubro Negro). Em árvores mais complexas podemos até obter algo em
+torno de O(k) com k constante.
